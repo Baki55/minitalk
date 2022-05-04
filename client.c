@@ -6,11 +6,13 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:12:35 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/05/04 15:32:59 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/05/04 16:30:46 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+int	cond;
 
 void	stream_char(pid_t pid, char c)
 {
@@ -43,10 +45,10 @@ void	stream_msg(pid_t pid, char *msg)
 {
 	while (*msg != '\0')
 	{
-		stream_char(pid_t pid, *msg);
+		stream_char(pid, *msg);
 		msg++;
 	}
-	write(1, "String sent successfully. \n", 26);
+	write(1, "String sent successfully.\n", 26);
 }
 
 void	handler(int sig)
@@ -62,8 +64,8 @@ int	main(int argc, char **argv)
 	signal(SIGUSR1, handler);
 	if (argc == 3)
 	{
-		serverpid = ft_atoi(argc[1]);
-		ft_stream_str(argv[2], serverpid);
+		serverpid = ft_atoi(argv[1]);
+		stream_msg(serverpid, argv[2]);
 	}
 	else
 		write(1, "Usage: ./client [server PID] [message]\n", 39);
