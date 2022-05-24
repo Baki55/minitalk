@@ -6,7 +6,7 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:13:33 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/05/04 15:17:35 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/05/24 12:32:29 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 {
 	static unsigned char	result;
 	static int				bit_position;
-	
+
 	(void)ucontext;
 	kill(info->si_pid, SIGUSR1);
 	result += (sig == SIGUSR1) << bit_position;
@@ -32,8 +32,8 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 
 int	main(void)
 {
-	struct	sigaction	sa;
-	
+	struct sigaction	sa;
+
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = handler;
 	ft_putnbr(getpid(), 10, "0123456789");
@@ -42,5 +42,5 @@ int	main(void)
 	sigaction(SIGUSR2, &sa, NULL);
 	while (19)
 		pause();
-	return(0);
+	return (0);
 }
