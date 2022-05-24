@@ -6,19 +6,19 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:12:35 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/05/04 16:30:46 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/05/24 12:30:12 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	cond;
+int	g_cond;
 
 void	stream_char(pid_t pid, char c)
 {
 	int	bit;
 	int	r;
-	
+
 	bit = 0;
 	r = 0;
 	cond = 1;
@@ -60,7 +60,7 @@ void	handler(int sig)
 int	main(int argc, char **argv)
 {
 	pid_t	serverpid;
-	
+
 	signal(SIGUSR1, handler);
 	if (argc == 3)
 	{
