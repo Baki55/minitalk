@@ -6,7 +6,7 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:12:35 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/05/24 12:30:12 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/05/24 12:41:13 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void	stream_char(pid_t pid, char c)
 
 	bit = 0;
 	r = 0;
-	cond = 1;
-	while (bit < CHAR_BIT && cond)
+	g_cond = 1;
+	while (bit < CHAR_BIT && g_cond)
 	{
-		cond = 0;
+		g_cond = 0;
 		if (c & 1)
 			r = kill(pid, SIGUSR1);
 		else
 			r = kill(pid, SIGUSR2);
 		if (r == -1)
 			ft_error("Invalid PID.\n");
-		if (!cond)
+		if (!g_cond)
 			usleep(50);
 		c >>= 1;
 		usleep(50);
-		if (!cond)
+		if (!g_cond)
 			ft_error("Signal failed to send.\n");
 		bit++;
 	}
@@ -54,7 +54,7 @@ void	stream_msg(pid_t pid, char *msg)
 void	handler(int sig)
 {
 	(void)sig;
-	cond = 1;
+	g_cond = 1;
 }
 
 int	main(int argc, char **argv)
