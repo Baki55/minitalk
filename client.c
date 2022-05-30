@@ -6,7 +6,7 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 18:12:35 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/05/24 12:41:13 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/05/30 15:33:43 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	stream_char(pid_t pid, char c)
 		if (r == -1)
 			ft_error("Invalid PID.\n");
 		if (!g_cond)
-			usleep(50);
+			usleep(200);
 		c >>= 1;
-		usleep(50);
+		usleep(200);
 		if (!g_cond)
 			ft_error("Signal failed to send.\n");
 		bit++;
