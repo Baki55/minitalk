@@ -6,7 +6,7 @@
 #    By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/04 16:31:01 by bkhatib           #+#    #+#              #
-#    Updated: 2022/05/04 16:37:14 by bkhatib          ###   ########.fr        #
+#    Updated: 2022/05/30 15:08:22 by bkhatib          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ $(SERVER) :
 $(CLIENT):
 	@$(CC) $(FLAGS) client.c utils.c -o $(CLIENT)
 
-bonus : fclean all
-
 clean :
 	@rm -f $(SERVER) $(CLIENT)
 	
 fclean : clean
+
+re : fclean all
